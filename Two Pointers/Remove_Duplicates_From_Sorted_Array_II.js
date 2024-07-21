@@ -19,13 +19,13 @@ It does not matter what you leave beyond the returned k (hence they are undersco
  */
 var removeDuplicates = function (nums) {
   let cursor = 1;
-  let Flag = false; //flag is 'true' when array has duplicate
+  let flag = false; //flag is 'true' when array has duplicate
 
   for (let i = 1; i < nums.length; i++) {
     if (nums[i] === nums[i - 1]) {
-      if (!Flag) {
+      if (!flag) {
         nums[cursor++] = nums[i];
-        Flag = true;
+        flag = true;
       }
     } else {
       nums[cursor++] = nums[i];
