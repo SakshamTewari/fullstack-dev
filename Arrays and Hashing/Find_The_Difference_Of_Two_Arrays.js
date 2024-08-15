@@ -24,11 +24,12 @@ var findDifference = function (nums1, nums2) {
   let set1 = new Set();
   let set2 = new Set();
 
-  // put values of nums1 in the map
+  // put values of nums1 in the set1
   for (let i = 0; i < nums1.length; i++) {
     set1.add(nums1[i]);
   }
 
+  // put values of nums2 in the set2
   for (let i = 0; i < nums2.length; i++) {
     set2.add(nums2[i]);
   }
