@@ -30,3 +30,35 @@ var findDisappearedNumbers = function (nums) {
 };
 
 // ================ Try without extra space ===============//
+
+var findDisappearedNumbers = function (nums) {
+  let i = 0;
+
+  while (i < nums.length) {
+    let correctIndex = nums[i] - 1;
+
+    // Only swap if the current number is not in its correct position
+    // and if the number we're swapping with is not already in its correct position.
+    // this works because we will only increment 'i' when after swapping, 'i' receives the correct element
+    if (nums[i] !== nums[correctIndex]) {
+      swap(nums, i, correctIndex);
+    } else {
+      i++;
+    }
+  }
+
+  let res = [];
+  for (let j = 0; j < nums.length; j++) {
+    if (nums[j] !== j + 1) {
+      res.push(j + 1);
+    }
+  }
+
+  return res;
+};
+
+function swap(nums, i, j) {
+  let temp = nums[i];
+  nums[i] = nums[j];
+  nums[j] = temp;
+}
