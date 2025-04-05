@@ -23,12 +23,35 @@ const obj1 = {
 };
 obj1.show();
 
+// this inside nested refular functions
+const obj0 = {
+  name: 'Saksham',
+  show: function () {
+    function inner() {
+      console.log(this.name); // `this` refers to the global object (or `undefined` in strict mode)
+    }
+    inner();
+  },
+};
+obj0.show();
+
 //call apply bind methods (sharing methods)
 const obj2 = {
   name: 'Tewari',
 };
 
 obj1.show.call(obj2);
+
+const example = {
+  name: 'Saksham',
+  displayName: function () {
+    function inner() {
+      console.log(this.name);
+    }
+    inner.call(this);
+  },
+};
+example.displayName();
 
 //this inside arrow function
 const obj3 = {
