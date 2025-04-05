@@ -59,3 +59,60 @@ console.log(promise3);
 example(promise3).then((val) => {
   console.log(val);
 });
+
+/* Promise.all polyfill 
+
+  - resolves when all promises inside are resolved or no looping item left
+  - rejected even if any one of the promises is rejected
+*/
+
+const myPromiseAll = (taskList) => {
+  const results = [];
+  let promisesCompleted = 0;
+
+  return new Promise((resolve, reject) => {
+    taskList.forEach((promise, index) => {
+      promise
+        .then((val) => {
+          results[index] = val;
+          promisesCompleted += 1;
+
+          if (promisesCompleted === taskList.length) {
+            resolve(results);
+          }
+        })
+        .catch((error) => reject(error));
+    });
+  });
+};
+
+//fulfilled case
+
+const task1 = (time) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(time), time);
+  });
+};
+
+const taskList1 = [task1(3000), task1(1000), task1(2000)]; // Each task(time) function is being immediately invoked
+
+// run myPromiseAll
+myPromiseAll(taskList1)
+  .then((results) => console.log('got results ', results))
+  .catch(console.error);
+
+//rejected case
+const task2 = (time) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (time < 2000) {
+        reject('Rejected');
+      }
+    }, time);
+  });
+};
+
+const taskList2 = [task2(3000), task2(1000), task2(2000)];
+myPromiseAll(taskList2)
+  .then((results) => console.log('results: ', results))
+  .catch(console.error);
