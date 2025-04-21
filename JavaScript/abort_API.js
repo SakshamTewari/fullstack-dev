@@ -1,3 +1,11 @@
+/* Javascript web API's have method called 'AbortController'
+
+    - it has a property called 'signal', that allows us to create an AbortSignal
+    - can be associated with Fetch API which provides an option to abort the API request
+    - when abort() is called, fetch() promise rejects with an Abort Error
+
+*/
+
 const controller = new AbortController();
 const signal = controller.signal;
 
