@@ -26,6 +26,21 @@ pattern1(5, 5);
     ***
     ****
     *****
+*/
+
+function pattern2(r) {
+  for (let i = 0; i < r; i++) {
+    let row = '';
+    for (let j = 0; j <= i; j++) {
+      row += '*';
+    }
+    console.log(row);
+  }
+}
+
+pattern2(5);
+
+/*
 
 
 3.  *****
