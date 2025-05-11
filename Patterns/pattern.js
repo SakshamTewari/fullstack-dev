@@ -93,14 +93,38 @@ pattern4(5);
     ***
     **
     *
+*/
 
+function pattern5(r) {
+  for (let i = 1; i <= (r + 1) / 2; i++) {
+    let row = '';
+    for (let j = 1; j <= i; j++) {
+      row += '*';
+    }
+    console.log(row);
+  }
+
+  for (let i = (r + 1) / 2 - 1; i >= 1; i--) {
+    let row = '';
+    for (let j = i; j >= 1; j--) {
+      row += '*';
+    }
+    console.log(row);
+  }
+}
+
+pattern5(13);
+
+/*
 
 6.       *
         **
        ***
       ****
      *****
+*/
 
+/*
 
 7.   *****
       ****
