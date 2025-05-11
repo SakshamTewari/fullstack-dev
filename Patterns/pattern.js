@@ -68,7 +68,21 @@ pattern3(5);
     1 2 3
     1 2 3 4
     1 2 3 4 5
+*/
 
+function pattern4(r) {
+  for (let i = 1; i <= r; i++) {
+    let row = '';
+    for (let j = 1; j <= i; j++) {
+      row += j + ' ';
+    }
+    console.log(row.trim());
+  }
+}
+
+pattern4(5);
+
+/*
 
 5.  *
     **
