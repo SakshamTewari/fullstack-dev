@@ -42,13 +42,26 @@ pattern2(5);
 
 /*
 
-
 3.  *****
     ****
     ***
     **
     *
+*/
 
+function pattern3(r) {
+  for (let i = r; i > 0; i--) {
+    let row = '';
+    for (let j = i; j > 0; j--) {
+      row += '*';
+    }
+    console.log(row);
+  }
+}
+
+pattern3(5);
+
+/*
 
 4.  1
     1 2
