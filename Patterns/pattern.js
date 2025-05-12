@@ -128,7 +128,7 @@ function pattern6(r) {
   for (let i = r; i >= 1; i--) {
     let row = '';
     //  Add space first
-    for (let j = 1; j <= i; j++) {
+    for (let j = 1; j < i; j++) {
       row += ' ';
     }
     //  Add stars later
@@ -148,7 +148,26 @@ pattern6(5);
        ***
         **
          *
+*/
 
+function pattern7(r) {
+  for (let i = 1; i <= r; i++) {
+    let row = '';
+
+    for (let j = 1; j < i; j++) {
+      row += ' ';
+    }
+
+    for (let k = 1; k <= r - i + 1; k++) {
+      row += '*';
+    }
+    console.log(row);
+  }
+}
+
+pattern7(5);
+
+/*
 
 8.      *
        ***
