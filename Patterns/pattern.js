@@ -124,6 +124,23 @@ pattern5(13);
      *****
 */
 
+function pattern6(r) {
+  for (let i = r; i >= 1; i--) {
+    let row = '';
+    //  Add space first
+    for (let j = 1; j <= i; j++) {
+      row += ' ';
+    }
+    //  Add stars later
+    for (let k = 1; k <= r - i + 1; k++) {
+      row += '*';
+    }
+    console.log(row);
+  }
+}
+
+pattern6(5);
+
 /*
 
 7.   *****
