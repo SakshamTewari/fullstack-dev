@@ -174,7 +174,30 @@ pattern7(5);
       *****
      *******
     *********
+*/
 
+function pattern8(r) {
+  for (let i = r; i >= 1; i--) {
+    let row = '';
+
+    for (let j = 1; j < i; j++) {
+      row += ' ';
+    }
+
+    for (let k = 1; k <= r - i + 1; k++) {
+      row += '*';
+    }
+
+    for (let l = 1; l <= r - i; l++) {
+      row += '*';
+    }
+    console.log(row);
+  }
+}
+
+pattern8(5);
+
+/*
 
 9.  *********
      *******
