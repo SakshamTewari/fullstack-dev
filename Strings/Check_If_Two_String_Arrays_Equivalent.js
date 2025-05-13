@@ -28,13 +28,13 @@ function arrayStringsAreEqual(word1, word2) {
     p2++;
 
     // move to next string in word1 if needed
-    if (p1 === word1.length) {
+    if (p1 === word1[i].length) {
       i++;
       p1 = 0;
     }
 
     // move to next string in word2 if needed
-    if (p2 === word2.length) {
+    if (p2 === word2[j].length) {
       j++;
       p2 = 0;
     }
