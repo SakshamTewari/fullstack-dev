@@ -26,3 +26,25 @@ var largestOddNumber = function (num) {
   // If no odd number is found, return an empty string
   return '';
 };
+
+/*
+function largestOddNumber(num) {
+    let maxOdd = "";
+
+    for (let i = 0; i < num.length; i++) {
+        for (let j = i + 1; j <= num.length; j++) {
+            const sub = num.slice(i, j);
+            const lastDigit = sub[sub.length - 1];
+            if (parseInt(lastDigit) % 2 === 1) {
+                // Check if this is greater than maxOdd
+                if (maxOdd === "" || BigInt(sub) > BigInt(maxOdd)) {
+                    maxOdd = sub;
+                }
+            }
+        }
+    }
+
+    return maxOdd;
+}
+
+*/
