@@ -31,6 +31,28 @@ function subarraySum(nums, k) {
   return count;
 }
 
+// Using sliding window (only works for non-negative integers here)
+function subarraySumSliding(nums, k) {
+  let count = 0;
+  let sum = 0;
+  let left = 0;
+
+  for (let right = 0; right < nums.length; right++) {
+    sum += nums[right];
+
+    while (sum > k) {
+      sum -= nums[left];
+      left++;
+    }
+
+    if (sum === k) {
+      count++;
+    }
+  }
+  return count;
+}
+
 // Test
 
 console.log(subarraySum([1, 1, 1], 2));
+console.log(subarraySumSliding([1, 1, 1], 2));
