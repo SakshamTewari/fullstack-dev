@@ -8,8 +8,8 @@ This repo contains a mix of **Javascript Concepts** and **Data Structures & Algo
 
 ### 🔹 JavaScript Utilities
 
-- [Debounce](./frontend-dev/JavaScript/debounce.js)
-- [Throttle](./frontend-dev/JavaScript/throttle.js)
+- [Debounce](./JavaScript/debounce.js)
+- [Throttle](./JavaScript/throttle.js)
 
 ---
 
@@ -17,13 +17,13 @@ This repo contains a mix of **Javascript Concepts** and **Data Structures & Algo
 
 ### 🔸 Arrays
 
-- [Two Sum](./frontend-dev/Arrays%20and%20Hashing/Two_Sum.js)
-- [Maximum Subarray](./frontend-dev/Arrays%20and%20Hashing/Maximum_Subarray.js)
+- [Two Sum](./Arrays%20and%20Hashing/Two_Sum.js)
+- [Maximum Subarray](./Arrays%20and%20Hashing/Maximum_Subarray.js)
 
 ### 🔸 LinkedList
 
-- [Reverse Linked List](./frontend-dev/Linked%20List/Reverse_Linked_List.js)
-- [Linked List Cycle](./frontend-dev/Linked%20List/Linked_List_Cycle.js)
+- [Reverse Linked List](./Linked%20List/Reverse_Linked_List.js)
+- [Linked List Cycle](./Linked%20List/Linked_List_Cycle.js)
 
 ---
 
