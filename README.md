@@ -110,6 +110,10 @@ This repo contains a mix of **Javascript Concepts** and **Data Structures & Algo
 - [Union Of Two Arrays](./Arrays%20and%20Hashing/FUnion_Of_Two_Arrays.js)
 - [Valid Anagram](./Arrays%20and%20Hashing/Valid_Anagram.js)
 
+### 🔸 Arrays
+
+- [Longest Substring Without Repeating Characters](./Strings/Longest_Substring_Without_Repeating_Characters.js)
+
 ### 🔸 Linked List
 
 - [Convert Binary Number In A Linked List To Integer](./Linked%20List/Convert_Binary_Number_In_A_Linked_List_To_Integer.js)
