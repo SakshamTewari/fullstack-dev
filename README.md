@@ -114,6 +114,7 @@ This repo contains a mix of **Javascript Concepts** and **Data Structures & Algo
 ### 🔸 Strings
 
 - [Longest Substring Without Repeating Characters](./Strings/Longest_Substring_Without_Repeating_Characters.js)
+- [Longest Substring With K Distinct Characters](./Strings/Longest_Substring_With_K_Distinct_Characters.js)
 - [Check If Two String Arrays Equivalent](./Strings/Check_If_Two_String_Arrays_Equivalent.js)
 - [Group Anagrams](./Strings/Group_Anagrams.js)
 - [Shuffle String](./Strings/Shuffle_String.js)
