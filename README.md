@@ -110,9 +110,16 @@ This repo contains a mix of **Javascript Concepts** and **Data Structures & Algo
 - [Union Of Two Arrays](./Arrays%20and%20Hashing/FUnion_Of_Two_Arrays.js)
 - [Valid Anagram](./Arrays%20and%20Hashing/Valid_Anagram.js)
 
-### 🔸 Arrays
+### 🔸 Strings
 
 - [Longest Substring Without Repeating Characters](./Strings/Longest_Substring_Without_Repeating_Characters.js)
+- [Check If Two String Arrays Equivalent](./Strings/Check_If_Two_String_Arrays_Equivalent.js)
+- [Group Anagrams](./Strings/Group_Anagrams.js)
+- [Shuffle String](./Strings/Shuffle_String.js)
+- [To Lower Case](./Strings/To_Lower_Case.js)
+- [Count Items Matching A Rule](./Strings/Count_Items_Matching_A_Rule.js)
+- [Remove Outermost Parentheses](./Strings/Remove_Outermost_Parentheses.js)
+- [Reverse Words In A String III](./Strings/Reverse_Words_In_A_String_III.js)
 
 ### 🔸 Linked List
 
