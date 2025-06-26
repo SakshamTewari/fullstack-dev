@@ -64,6 +64,7 @@ This repo contains a mix of **Javascript Concepts** and **Data Structures & Algo
 
 - [Two Sum](./Arrays%20and%20Hashing/Two_Sum.js)
 - [Maximum Subarray](./Arrays%20and%20Hashing/Maximum_Subarray.js)
+- [Maximum Average Subarray](./Arrays%20and%20Hashing/Maximum_Average_Subarray.js)
 - [Design Hashmap](./Arrays%20and%20Hashing/Design_Hashmap.js)
 - [Design Hashset](./Arrays%20and%20Hashing/Design_Hashset.js)
 - [Check If Array Is Sorted And Rotated](./Arrays%20and%20Hashing/Check_If_Array_Is_Sorted_And_Rotated.js)
