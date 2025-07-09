@@ -22,7 +22,7 @@ This repo contains a mix of **Javascript Concepts** and **Data Structures & Algo
 - [Toggle](./JavaScript/toggle.js)
 - [Pausable Auto Incrementer](./JavaScript/pausable_auto_incrementer.js)
 - [Hash Set](./JavaScript/hashSet.js)
-- [Object](./JavaScript/object.js)
+- [Object](./JavaScript/objects.js)
 - [instanceOf](./JavaScript/instanceOf.js)
 - [Object.assign()](<./JavaScript/object.assign().js>)
 - [Method Chaining](./JavaScript/method_chaining.js)
