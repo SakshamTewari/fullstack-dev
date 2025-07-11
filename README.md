@@ -11,6 +11,7 @@ This repo contains a mix of **Javascript Concepts** and **Data Structures & Algo
 - [Debounce](./JavaScript/debounce.js)
 - [Throttle](./JavaScript/throttle.js)
 - [Currying](./JavaScript/currying.js)
+- [LRU Cache](./JavaScript/LRU_Cache.js)
 - [Promise](./JavaScript/promise.js)
 - [Piping](./JavaScript/piping.js)
 - [Polyfill](./JavaScript/polyfill.js)
