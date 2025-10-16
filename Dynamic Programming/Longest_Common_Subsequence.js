@@ -19,6 +19,33 @@ Output: 1
 Explanation: There are three longest common subsequences of length 1, "A", "B" and "C".
 */
 
+function longestCommonSubsequenceMemoization(
+  s1,
+  s2,
+  m = s1.length,
+  n = s2.length,
+  memo = {},
+) {
+  // base case
+  if (m === 0 || n === 0) return 0;
+
+  const key = `${m}-${n}`;
+  if (key in memo) return memo[key];
+
+  // if match
+  if (s1[m - 1] === s2[n - 1]) {
+    memo[key] =
+      1 + longestCommonSubsequenceMemoization(s1, s2, m - 1, n - 1, memo);
+    return memo[key];
+  }
+  // if not match
+  memo[key] = Math.max(
+    longestCommonSubsequenceMemoization(s1, s2, m, n - 1, memo),
+    longestCommonSubsequenceMemoization(s1, s2, m - 1, n, memo),
+  );
+  return memo[key];
+}
+
 function longestCommonSubsequenceRecursion(
   s1,
   s2,
@@ -40,4 +67,5 @@ function longestCommonSubsequenceRecursion(
 }
 
 // Test
+console.log(longestCommonSubsequenceMemoization('AGGTAB', 'GXTXAYB'));
 console.log(longestCommonSubsequenceRecursion('AGGTAB', 'GXTXAYB'));
