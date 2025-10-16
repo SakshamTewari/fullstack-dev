@@ -17,20 +17,12 @@ Explanation: The perimeter is the 16 yellow stripes in the image above.
  * @return {number}
  */
 var islandPerimeter = function (grid) {
-  let peri = 0;
   let set = new Set();
 
   if (!grid || grid.length === 0) return 0; // Check if grid is defined and not empty
 
   function dfs(i, j) {
-    if (
-      i >= grid.length ||
-      grid[i] === undefined ||
-      j >= grid[i].length ||
-      i < 0 ||
-      j < 0 ||
-      grid[i][j] == 0
-    ) {
+    if (i >= grid.length || grid[i] === undefined || j >= grid[i].length || i < 0 || j < 0 || grid[i][j] == 0) {
       return 1; // Add to perimeter if out of bounds or water
     }
     if (set.has(i + ',' + j)) {
@@ -53,3 +45,37 @@ var islandPerimeter = function (grid) {
 
   return 0; // No land found
 };
+
+// Practice code (without finding the first land cell)
+
+function islandPerimeterDFS(grid, i = 0, j = 0, set = new Set()) {
+  // base case
+  if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] === 0) return 1;
+  if (set.has(i + ',' + j)) return 0;
+  set.add(i + ',' + j);
+
+  return (
+    islandPerimeterDFS(grid, i + 1, j, set) +
+    islandPerimeterDFS(grid, i - 1, j, set) +
+    islandPerimeterDFS(grid, i, j + 1, set) +
+    islandPerimeterDFS(grid, i, j - 1, set)
+  );
+}
+
+// Test
+console.log(
+  islandPerimeter([
+    [0, 1, 0, 0],
+    [1, 1, 1, 0],
+    [0, 1, 0, 0],
+    [1, 1, 0, 0],
+  ]),
+);
+console.log(
+  islandPerimeterDFS([
+    [0, 1, 0, 0],
+    [1, 1, 1, 0],
+    [0, 1, 0, 0],
+    [1, 1, 0, 0],
+  ]),
+);
