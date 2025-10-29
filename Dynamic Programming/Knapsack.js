@@ -33,6 +33,39 @@ function knapsackRecursion(weight, profit, W, n = weight.length) {
   return Math.max(pick, notPick);
 }
 
+// Using memoization
+
+function knapsackMemoization(
+  weight,
+  profit,
+  W,
+  n = weight.length,
+  memo = Array.from({ length: n + 1 }, () => Array(W + 1).fill(-1)),
+) {
+  // base case
+  if (n === 0 || W === 0) return 0;
+
+  // Check if value is already computed
+  if (memo[n][W] !== -1) return memo[n][W];
+
+  let pick = 0;
+
+  if (weight[n - 1] <= W) {
+    // include
+    pick =
+      profit[n - 1] +
+      knapsackRecursion(weight, profit, W - weight[n - 1], n - 1, memo);
+  }
+
+  // not include
+  let notPick = knapsackRecursion(weight, profit, W, n - 1, memo);
+
+  // store the result in memo and return it
+  memo[n][W] = Math.max(pick, notPick);
+  return memo[n][W];
+}
+
 // Test
 
 console.log(knapsackRecursion([4, 5, 6], [1, 2, 3], 3));
+console.log(knapsackMemoization([4, 5, 6], [1, 2, 3], 3));
