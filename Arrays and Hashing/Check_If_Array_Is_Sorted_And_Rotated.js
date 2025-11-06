@@ -37,3 +37,15 @@ var check = function (nums) {
 
   return true;
 };
+
+// To check array sorted using recursion
+
+function isSortedRecursive(arr, n = arr.length) {
+  if (n === 1 || n === 0) return true;
+
+  return arr[n - 1] >= arr[n - 2] && isSortedRecursive(arr, n - 1);
+}
+
+// Test
+console.log(isSortedRecursive([1, 2, 3, 4]));
+console.log(isSortedRecursive([1, 4, 3, 5]));
