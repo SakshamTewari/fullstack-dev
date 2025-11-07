@@ -25,3 +25,20 @@ var removeDuplicates = function (nums) {
   }
   return cursor;
 };
+
+// Using Set
+function removeDuplicatesSet(nums) {
+  let result = [];
+  let seen = new Set();
+
+  for (let num of nums) {
+    if (!seen.has(num)) {
+      seen.add(num);
+      result.push(num);
+    }
+  }
+  return result;
+}
+
+// Test
+console.log(removeDuplicatesSet([1, 1, 2, 3, 2, 4, 3, 4, 5]));
