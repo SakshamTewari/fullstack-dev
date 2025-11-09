@@ -33,6 +33,11 @@ function reverseArrayRecursive(arr, left = 0, right = arr.length - 1) {
   return reverseArrayRecursive(arr, left + 1, right - 1);
 }
 
+// Using Arr.reduce
+function reverseArrayReduce(arr) {
+  return arr.reduce((acc, curr) => [curr, ...acc], []);
+}
+
 // Test
 console.log(reverseArray([1, 2, 3, 4, 5]));
 console.log(reverseArrayRecursive([1, 2, 3, 4, 5]));
