@@ -8,7 +8,7 @@ Input: nums = [2,2,1]
 Output: 1
 */
 
-function singleNumber(nums) {
+function singleNumberSet(nums) {
   let result = new Set();
   for (let num of nums) {
     if (result.has(num)) {
@@ -20,6 +20,29 @@ function singleNumber(nums) {
   return [...result][0]; // converts the Set into an array by spreading its elements into a new array.
 }
 
-// Test
+// Using XOR
+function singleNumber(nums) {
+  let result = 0;
+  for (let num of nums) {
+    result ^= num;
+  }
+  return result;
+}
 
-console.log(singleNumber([2, 2, 1])); // Output: 1
+// Using Hashmap
+function singleNumberHashMap(nums) {
+  const numCount = new Map();
+  for (let num of nums) {
+    numCount.set(num, (numCount.get(num) || 0) + 1);
+  }
+
+  for (let [num, count] of numCount) {
+    if (count === 1) return num;
+  }
+  return -1;
+}
+
+// Test
+console.log(singleNumber([1, 1, 2, 2, 3]));
+console.log(singleNumberHashMap([1, 2, 2, 4, 3, 4, 3]));
+console.log(singleNumberSet([2, 2, 1]));
