@@ -24,3 +24,18 @@ var missingNumber = function (nums) {
     else return i;
   }
 };
+
+// Using Gauss formula
+function missingNumberGauss(nums) {
+  let sum = 0;
+  let n = nums.length;
+  for (let num of nums) sum += num;
+
+  let expSum = (n * (n + 1)) / 2;
+
+  return expSum - sum;
+}
+
+// Test
+console.log(missingNumber([3, 0, 1]));
+console.log(missingNumberGauss([3, 0, 1]));
