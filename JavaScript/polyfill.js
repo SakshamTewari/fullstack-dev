@@ -9,21 +9,21 @@
 
 // .map() polyfill
 if (!Array.prototype.map) {
-  Array.prototype.map = function (callback) {
+  Array.prototype.map = function (callback, thisArg) {
     const result = [];
     for (let i = 0; i < this.length; i++) {
-      result.push(callback(this[i], i, this));
+      result.push(callback.call(thisArg, this[i], i, this));
     }
     return result;
   };
 }
 
 // .filter()
-Array.prototype.filter = function (callback) {
+Array.prototype.filter = function (callback, thisArg) {
   let result = [];
 
   for (let i = 0; i < this.length; i++) {
-    if (callback(this[i], i, this)) {
+    if (callback.call(thisArg, this[i], i, this)) {
       result.push(this[i]);
     }
   }
@@ -54,3 +54,32 @@ window.Promise = function (callback) {
 
   callback(resolve, reject);
 };
+
+// getElementsByStyle()
+
+function getElementsByStyle(rootElement, property, value) {
+  const computedValue = getPropertyComputedValue(property, value);
+  const result = [];
+  const search = (element, property, value) => {
+    let computedStyles = window.getComputedStyle(element);
+    let elementPropertyValue = computedStyles[property];
+    if (elementPropertyValue === computedValue) {
+      result.push(element);
+    }
+    for (const child of element.children) {
+      search(child, property, value);
+    }
+  };
+
+  const getPropertyComputedValue = (property, value) => {
+    const div = document.createElement("div");
+    div.style[property] = value;
+    const styles = window.getComputedStyle(document.body.appendChild(div));
+    let computedValue = styles[property];
+    document.body.removeChild(divv);
+    return computedValue;
+  };
+
+  search(rootElement, property, value);
+  return result;
+}
