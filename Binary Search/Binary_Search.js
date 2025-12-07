@@ -47,3 +47,24 @@ function binarySearch(nums, target, start, end) {
     return binarySearch(nums, target, start, mid - 1);
   else return binarySearch(nums, target, mid + 1, end);
 }
+
+/*
+Given an array of integers nums which is sorted in descending order, and an integer target, write a function to search target in nums. If target exists, then return its index. Otherwise, return -1.
+*/
+
+function binarySearchDescending(nums, target) {
+  let start = 0;
+  let end = nums.length - 1;
+
+  while (start <= end) {
+    let mid = Math.floor(start + (end - start) / 2);
+
+    if (nums[mid] === target) return mid;
+    else if (nums[mid] < target) end = mid - 1;
+    else start = mid + 1;
+  }
+  return -1;
+}
+
+// Test
+console.log(binarySearchDescending([20, 17, 15, 11, 9, 8, 1], 11));
