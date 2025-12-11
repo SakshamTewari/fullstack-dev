@@ -15,7 +15,7 @@ Output: 4
  * @param {number} target
  * @return {number}
  */
-var search = function (nums, target) {
+function searchInSorted(nums, target) {
   let n = nums.length;
   let [low, high] = [0, n - 1];
 
@@ -42,4 +42,7 @@ var search = function (nums, target) {
     }
   }
   return -1;
-};
+}
+
+// Test
+console.log(searchInSorted([4, 5, 6, 7, 0, 1, 2], 0));
