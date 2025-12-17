@@ -28,7 +28,28 @@ function lengthOfLongestSubstring(s) {
   return maxLen;
 }
 
+function longestSubstringSlidingWindow(s) {
+  let set = new Set();
+  let left = 0;
+  let maxLen = 0;
+
+  for (let right = 0; right < s.length; right++) {
+    // if character already present, shrink
+    // using while to delete any char which might be present in between. so we have to remove all from left till we reach the duplicate char
+    while (set.has(s[right])) {
+      set.delete(s[left]);
+      left++;
+    }
+    // add current
+    set.add(s[right]);
+    maxLen = Math.max(maxLen, right - left + 1);
+  }
+  return maxLen;
+}
+
 // Test
 
-console.log(lengthOfLongestSubstring('abcabcbb'));
-console.log(lengthOfLongestSubstring('bbbbb'));
+console.log(lengthOfLongestSubstring("abcabcbb"));
+console.log(lengthOfLongestSubstring("bbbbb"));
+
+console.log(longestSubstringSlidingWindow("abcabcbb"));
