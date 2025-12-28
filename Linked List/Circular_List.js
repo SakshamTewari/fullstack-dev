@@ -35,6 +35,21 @@ function isCircularList(head) {
   return false;
 }
 
+/*
+Given a circular linked list. The task is to find the length of the linked list, where length is defined as the number of nodes in the linked list.
+*/
+
+function circularListLength(head) {
+  if (head === null) return 0;
+  let count = 0;
+  let current = head;
+  do {
+    current = current.next;
+    count++;
+  } while (current !== head);
+  return count;
+}
+
 // Test
 let head = new Node(11);
 head.next = new Node(2);
@@ -44,3 +59,4 @@ head.next.next.next.next = head;
 printCircularList(head);
 
 console.log(isCircularList(head));
+console.log(circularListLength(head));
