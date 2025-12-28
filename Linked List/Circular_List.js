@@ -20,6 +20,21 @@ function printCircularList(head) {
   console.log();
 }
 
+/*
+Given the head of a singly linked list, the task is to find if given linked list is circular or not. 
+A linked list is called circular if its last node points back to its first node.
+Note: The linked list does not contain any internal loops.
+*/
+function isCircularList(head) {
+  if (head === null) return true;
+  let current = head;
+  while (current !== null) {
+    if (current.next === head) return true;
+    current = current.next;
+  }
+  return false;
+}
+
 // Test
 let head = new Node(11);
 head.next = new Node(2);
@@ -27,3 +42,5 @@ head.next.next = new Node(56);
 head.next.next.next = new Node(12);
 head.next.next.next.next = head;
 printCircularList(head);
+
+console.log(isCircularList(head));
