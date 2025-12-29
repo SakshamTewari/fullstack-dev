@@ -50,6 +50,49 @@ function circularListLength(head) {
   return count;
 }
 
+/*
+Delete a node from a circular linked list
+*/
+
+function deleteNode(head, key) {
+  if (head === null) return null;
+
+  // Single node
+  if (head.next === head) {
+    if (head.data === key) {
+      return null;
+    }
+    return head;
+  }
+
+  let curr = head,
+    prev = null;
+  // Head to be deleted
+  if (head.data === key) {
+    // find last node
+    while (curr.next !== head) {
+      curr = curr.next;
+    }
+    // curr = last node
+    curr.next = head.next;
+    head = head.next;
+    return head;
+  }
+
+  // Non-head to be deleted
+  prev = head;
+  curr = head.next;
+  while (curr !== head) {
+    if (curr.data === key) {
+      prev.next = curr.next;
+      return head;
+    }
+    prev = curr;
+    curr = curr.next;
+  }
+  return head; // key not found
+}
+
 // Test
 let head = new Node(11);
 head.next = new Node(2);
@@ -60,3 +103,7 @@ printCircularList(head);
 
 console.log(isCircularList(head));
 console.log(circularListLength(head));
+
+console.log("After deletion--------");
+console.log(deleteNode(head, 2));
+printCircularList(head);
