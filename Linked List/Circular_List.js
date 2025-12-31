@@ -93,6 +93,39 @@ function deleteNode(head, key) {
   return head; // key not found
 }
 
+/*
+Exchange the first and the last node. 
+The task should be done with only one extra node, you can not declare more than one extra node, and also you are not allowed to declare any other temporary variable. 
+
+Note: Extra node means the need of a node to traverse a list.
+*/
+
+function exchangeNode(head) {
+  {
+    if (head === null || head.next === head) {
+      return head;
+    }
+    // one extra node pointer
+    let temp = head;
+
+    // move temp to node before last
+    while (temp.next.next !== head) {
+      temp = temp.next;
+    }
+
+    let last = temp.next;
+
+    // swap
+    temp.next = head;
+    last.next = head.next;
+    head.next = last;
+
+    head = last;
+
+    return head;
+  }
+}
+
 // Test
 let head = new Node(11);
 head.next = new Node(2);
@@ -104,6 +137,10 @@ printCircularList(head);
 console.log(isCircularList(head));
 console.log(circularListLength(head));
 
-console.log("After deletion--------");
-console.log(deleteNode(head, 2));
+// console.log("After deletion--------");
+// console.log(deleteNode(head, 2));
+// printCircularList(head);
+
+console.log("After exchange--------");
+head = exchangeNode(head); // <---------------  this is important as function does not change variables as head inside function is just a copy that references to head outside
 printCircularList(head);
