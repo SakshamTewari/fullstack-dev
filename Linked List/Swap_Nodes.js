@@ -23,6 +23,12 @@ function swapNodes(head) {
   }
 }
 
+function swapNodesRecursive(head) {
+  if (head === null || head.next === null) return;
+  [head.data, head.next.data] = [head.next.data, head.data];
+  swapNodesRecursive(head.next.next);
+}
+
 function printList(head) {
   let curr = head;
   while (curr !== null) {
@@ -40,5 +46,9 @@ head.next.next.next.next = new Node(5);
 head.next.next.next.next.next = new Node(6);
 
 swapNodes(head);
+
+printList(head);
+
+swapNodesRecursive(head);
 
 printList(head);
