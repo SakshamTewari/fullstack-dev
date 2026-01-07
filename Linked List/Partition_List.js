@@ -46,6 +46,48 @@ function partitionList(head, x) {
   return lessHead.next;
 }
 
+/*
+Given a link list, modify the list such that all the even numbers appear before all the odd numbers in the modified list. 
+The order of appearance of numbers within each segregation should be the same as that in the original list.
+
+NOTE: Don't create a new linked list, instead rearrange the provided one.
+*/
+
+function segregate(head) {
+  if (!head || !head.next) return head;
+
+  let evenHead = null,
+    evenTail = null,
+    oddHead = null,
+    oddTail = null;
+
+  let curr = head;
+
+  while (curr) {
+    if (curr.data % 2 === 0) {
+      if (!evenHead) {
+        evenHead = evenTail = curr;
+      } else {
+        evenTail.next = curr;
+        evenTail = curr;
+      }
+    } else {
+      if (!oddHead) {
+        oddHead = oddTail = curr;
+      } else {
+        oddTail.next = curr;
+        oddTail = curr;
+      }
+    }
+    curr = curr.next;
+  }
+  if (oddTail) oddTail.next = null;
+  if (!evenHead) return oddHead;
+
+  evenTail.next = oddHead;
+  return evenHead;
+}
+
 function printList(head) {
   let curr = head;
   while (curr !== null) {
@@ -66,3 +108,6 @@ head.next.next.next.next.next = new Node(2);
 head = partitionList(head, 3);
 printList(head);
 console.log(head);
+
+head = segregate(head);
+printList(head);
