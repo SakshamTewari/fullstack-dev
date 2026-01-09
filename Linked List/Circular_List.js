@@ -126,6 +126,32 @@ function exchangeNode(head) {
   }
 }
 
+/*
+Split a Circular Linked List into two halves
+Given a Circular linked list. The task is split into two Circular Linked lists. 
+If there are an odd number of nodes in the given circular linked list then out of the resulting two halved lists, the first list should have one node more than the second list.
+*/
+function splitList(head) {
+  if (head === null) return [null, null];
+  let slow = head;
+  let fast = head;
+
+  while (fast.next !== head && fast.next.next !== head) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  if (fast.next.next === head) {
+    fast = fast.next;
+  }
+
+  const head1 = head;
+  const head2 = slow.next;
+  fast.next = head2;
+  slow.next = head;
+  return [head1, head2];
+}
+
 // Test
 let head = new Node(11);
 head.next = new Node(2);
