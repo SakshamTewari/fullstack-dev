@@ -37,6 +37,20 @@ function dfsRec(
   return result;
 }
 
+// For a DISCONNECTED GRAPH
+function dfsDisconnectedRec(
+  adj,
+  visited = new Array(adj.length).fill(false),
+  result = []
+) {
+  for (let i = 0; i < adj.length; i++) {
+    if (!visited[i]) {
+      dfsRec(adj, i, visited, result);
+    }
+  }
+  return result;
+}
+
 // Test
 
 let graph = {
@@ -53,3 +67,5 @@ dfs(graph, "A");
 let adj = [[2, 3], [2], [0, 1], [0], [5], [4]];
 
 console.log(dfsRec(adj, 0));
+
+console.log(dfsDisconnectedRec(adj));
