@@ -65,6 +65,46 @@ function findCircleNumDFS(isConnected) {
   return provinceCount;
 }
 
+/*
+Given n nodes of a forest (collection of trees), find the number of trees in the forest.
+
+Examples : 
+
+Input :  edges[] = {0, 1}, {0, 2}, {3, 4}
+Output : 2
+*/
+function countTrees(n, edges) {
+  const adj = Array.from({ length: n }, () => []);
+  const visited = new Array(n).fill(false);
+
+  let trees = 0;
+
+  // Build undirected graph
+  for (let [u, v] of edges) {
+    adj[u].push(v);
+    adj[v].push(u);
+  }
+
+  for (let i = 0; i < n; i++) {
+    if (!visited[i]) {
+      dfs(i);
+      trees++;
+    }
+  }
+
+  function dfs(node) {
+    visited[node] = true;
+    for (let neighbor of adj[node]) {
+      if (!visited[neighbor]) {
+        dfs(neighbor);
+      }
+    }
+  }
+  return trees;
+}
+
+// Test
+
 console.log(
   findCircleNumBFS([
     [1, 1, 0],
@@ -77,5 +117,13 @@ console.log(
     [1, 0, 0],
     [0, 1, 0],
     [0, 0, 1],
+  ]),
+);
+
+console.log(
+  countTrees(5, [
+    [0, 1],
+    [0, 2],
+    [3, 4],
   ]),
 );
