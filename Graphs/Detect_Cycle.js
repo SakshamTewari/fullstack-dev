@@ -47,6 +47,43 @@ function hasCycleDFS(adj) {
   return false;
 }
 
+// using topological sort
+function hasCycleTopo(adj) {
+  const n = adj.length;
+  const indegree = new Array(n).fill(0);
+
+  // Step 1: Calculate indegree
+  for (let u = 0; u < n; u++) {
+    for (let v of adj[u]) {
+      indegree[v]++;
+    }
+  }
+
+  // Step 2: Queue all nodes with indegree 0
+  const queue = [];
+  for (let i = 0; i < n; i++) {
+    if (indegree[i] === 0) queue.push(i);
+  }
+
+  let count = 0;
+
+  // Step 3: Process queue
+  while (queue.length > 0) {
+    const node = queue.shift();
+    count++;
+
+    for (let neighbor of adj[node]) {
+      indegree[neighbor]--;
+      if (indegree[neighbor] === 0) {
+        queue.push(neighbor);
+      }
+    }
+  }
+
+  // Step 4: Check if all nodes were processed
+  return count !== n; // true = cycle exists
+}
+
 // Test
 adj = [[1], [2], [0, 3], []];
 
