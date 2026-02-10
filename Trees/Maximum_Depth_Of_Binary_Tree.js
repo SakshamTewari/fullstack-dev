@@ -10,9 +10,34 @@ function TreeNode(val, left, right) {
   this.right = right === undefined ? null : right;
 }
 
-function maxDepth(root) {
+// Using Recursion
+
+function maxDepthRecursion(root) {
   if (!root) return 0;
-  return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+  return (
+    1 + Math.max(maxDepthRecursion(root.left), maxDepthRecursion(root.right))
+  );
+}
+
+// Using Level Order Traversal
+function maxDepthBFS(root) {
+  if (!root) return 0;
+
+  let queue = [root];
+  let depth = 0;
+
+  while (queue.length > 0) {
+    let levelSize = queue.length;
+    depth++;
+
+    for (let i = 0; i < levelSize; i++) {
+      let currentNode = queue.shift();
+
+      if (currentNode.left) queue.push(currentNode.left);
+      if (currentNode.right) queue.push(currentNode.right);
+    }
+  }
+  return depth;
 }
 
 // Test
@@ -23,4 +48,5 @@ const tree1 = new TreeNode(
   new TreeNode(20, new TreeNode(15), new TreeNode(7)),
 );
 
-console.log(maxDepth(tree1));
+console.log(maxDepthRecursion(tree1));
+console.log(maxDepthBFS(tree1));
