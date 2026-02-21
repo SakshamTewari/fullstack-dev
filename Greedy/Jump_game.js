@@ -32,6 +32,33 @@ function canJump(nums) {
   return true;
 }
 
+/*
+You are given a 0-indexed array nums of length n representing your maximum jump capability from each index.
+
+You start at index 0. Each element nums[i] represents the maximum number of steps you can jump forward from index i.
+Your goal is to reach the last index of the array (nums[n - 1]) using the minimum number of jumps
+Return the minimum number of jumps required to reach the last index.
+You can assume that it is always possible to reach the last index.
+*/
+
+function minJumps(nums) {
+  let jumps = 0;
+  let currentEndJump = 0;
+  let maxReach = 0;
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    maxReach = Math.max(maxReach, i + nums[i]);
+
+    if (maxReach >= nums.length - 1) return jumps + 1;
+
+    if (i === currentEndJump) {
+      jumps++;
+      currentEndJump = maxReach;
+    }
+  }
+}
+
 // Test
 console.log(canJump([2, 3, 1, 0, 4]));
 console.log(canJump([3, 2, 1, 0, 4]));
+console.log(minJumps([2, 3, 1, 1, 4]));
