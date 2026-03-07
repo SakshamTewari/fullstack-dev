@@ -78,7 +78,37 @@ function majorityElementMoore(nums) {
   return freq > nums.length / 2 ? candidate : -1;
 }
 
+/*
+Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+
+Input: nums = [3,2,3]
+Output: [3]
+*/
+
+//=====================Time: O(n) ; Space: O(n)============================
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var majorityElement2 = function (nums) {
+  let minimumVal = Math.floor(nums.length / 3) + 1;
+  let map = new Map();
+  let res = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    if (map.has(nums[i])) {
+      map.set(nums[i], map.get(nums[i]) + 1);
+    } else {
+      map.set(nums[i], 1);
+    }
+    // only check for 'minimumVal' as we don't need to add same nums[i] again if it appears next time
+    if (map.get(nums[i]) == minimumVal) res.push(nums[i]);
+  }
+  return res;
+};
+
 // Test
 console.log(majorityElement([1, 1, 2, 1, 3, 5, 1]));
 console.log(majorityElementSorting([1, 1, 2, 1, 3, 5, 1]));
 console.log(majorityElementMoore([1, 1, 2, 1, 3, 5, 1]));
+console.log(majorityElement2([3, 2, 3]));
