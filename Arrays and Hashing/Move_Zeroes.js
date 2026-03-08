@@ -33,3 +33,18 @@ function swap(nums, a, b) {
   nums[a] = nums[b];
   nums[b] = temp;
 }
+
+// Using Single pass swap
+function moveZeroesSinglePass(nums) {
+  let insertPos = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      [nums[insertPos], nums[i]] = [nums[i], nums[insertPos]];
+      insertPos++;
+    }
+  }
+  return nums;
+}
+
+// Test
+console.log(moveZeroesSinglePass([0, 1, 0, 3, 12]));
