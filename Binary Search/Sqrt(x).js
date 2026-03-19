@@ -38,3 +38,43 @@ var mySqrt = function (x) {
 
   return result; // Return the integer part of the square root
 };
+
+/*
+
+*/
+
+function nthRoot(n, m) {
+  let low = 1,
+    high = m;
+
+  while (low <= high) {
+    let mid = Math.floor((low + high) / 2);
+    let midPower = Math.pow(mid, n);
+
+    if (midPower === m) return mid;
+    else if (midPower < m) low = mid + 1;
+    else high = mid - 1;
+  }
+  return -1;
+}
+
+function nthRootPrecise(n, m) {
+  let low = 0,
+    high = m;
+
+  while (low + 1e-6 < high) {
+    let mid = (low + high) / 2;
+
+    if (Math.pow(mid, n) < m) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+  return low;
+}
+
+// Test
+
+console.log(nthRoot(4, 16));
+console.log(nthRootPrecise(4, 17));
