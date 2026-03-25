@@ -15,6 +15,7 @@ Output: false
 */
 
 function searchMatrix(matrix, target) {
+  if (!matrix.length || !matrix[0].length) return false;
   const rowLen = matrix.length;
   const colLen = matrix[0].length;
 
@@ -39,6 +40,29 @@ function searchMatrix(matrix, target) {
   return false;
 }
 
+/*
+You have been given a 2-D array 'mat' of size 'N x M' where 'N' and 'M' denote the number of rows and columns, respectively. 
+The elements of each row and each column are sorted in non-decreasing order. But, the first element of a row is not necessarily greater than the last element of the previous row (if it exists). 
+You are given an integer ‘target’, and your task is to find if it exists in the given 'mat' or not.
+*/
+function searchMatrix2(mat, target) {
+  let n = mat.length;
+  let m = mat[0].length;
+
+  let i = 0;
+  let j = m - 1;
+
+  while (i < n && j >= 0) {
+    if (mat[i][j] === target) return true;
+    else if (mat[i][j] > target) {
+      j--;
+    } else {
+      i++;
+    }
+  }
+  return false;
+}
+
 // Test
 
 const matrix = [
@@ -49,3 +73,4 @@ const matrix = [
 
 console.log(searchMatrix(matrix, 3));
 console.log(searchMatrix(matrix, 13));
+console.log(searchMatrix2(matrix, 11));
