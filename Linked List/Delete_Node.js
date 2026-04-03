@@ -7,8 +7,6 @@ Delete the given node
 Input: head = [4,5,1,9], node = 5
 Output: [4,1,9]
 
-Input: head = [4,5,1,9], node = 1
-Output: [4,5,9]
 */
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;
@@ -21,6 +19,23 @@ function deleteNode(node) {
   node.next = node.next.next;
 }
 
+/*
+Given a Linked List, delete the tail of the list and print the updated list.
+
+Input: 0->1->2
+Output: 0->1
+*/
+
+function deleteTail(head) {
+  let curr = head;
+
+  while (curr.next.next !== null) {
+    curr = curr.next;
+  }
+  curr.next = null;
+  return head;
+}
+
 // Test
 // let list = new ListNode(1, new ListNode(2, new ListNode(3)));
 
@@ -28,4 +43,5 @@ function deleteNode(node) {
 let node3 = new ListNode(3);
 let node2 = new ListNode(2, node3);
 let node1 = new ListNode(1, node2);
+console.log(deleteTail(node1));
 console.log(deleteNode(node2));
