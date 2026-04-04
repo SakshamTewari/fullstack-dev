@@ -84,6 +84,21 @@ function listLength(head) {
   return length;
 }
 
+/*
+Given the head of a linked list and an integer value, find out whether the integer is present in the linked list or not. Return true if it is present, or else return false.
+Input: 0->1->2, val = 2
+Output: True
+*/
+
+function searchLinkedList(head, val) {
+  let curr = head;
+  while (curr !== null) {
+    if (curr.data === val) return true;
+    curr = curr.next;
+  }
+  return false;
+}
+
 // Test
 let head = new Node(10);
 head.next = new Node(12);
@@ -94,3 +109,4 @@ head.next.next.next = head;
 console.log(hasCycle(head));
 console.log(cycleLength(head));
 console.log(listLength(head));
+console.log(searchLinkedList(head, 12));
