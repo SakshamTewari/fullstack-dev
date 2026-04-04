@@ -7,7 +7,7 @@ A cycle exists if, while traversing the list through next pointers, you encounte
 class Node {
   constructor(data) {
     this.data = data;
-    this.null = null;
+    this.next = null;
   }
 }
 
@@ -68,6 +68,22 @@ function cycleLength(head) {
   return 0;
 }
 
+/*
+Given the head of a linked list, print the length of the linked list.
+
+Input: 0->1->2 
+Output: 3
+*/
+function listLength(head) {
+  let length = 0;
+  let curr = head;
+  while (curr !== null) {
+    length++;
+    curr = curr.next;
+  }
+  return length;
+}
+
 // Test
 let head = new Node(10);
 head.next = new Node(12);
@@ -76,5 +92,5 @@ head.next.next.next = new Node(16);
 head.next.next.next = head;
 
 console.log(hasCycle(head));
-
 console.log(cycleLength(head));
+console.log(listLength(head));
