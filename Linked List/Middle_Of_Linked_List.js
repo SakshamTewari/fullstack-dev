@@ -32,9 +32,11 @@ function middleNode(head) {
   return curr;
 }
 
-/* Fast-Slow pointer method
+// Fast-Slow pointer method
+
 function middleNode(head) {
-  let slow = head, fast = head;
+  let slow = head,
+    fast = head;
 
   while (fast !== null && fast.next !== null) {
     slow = slow.next;
@@ -43,7 +45,6 @@ function middleNode(head) {
 
   return slow;
 }
-*/
 
 // Test
 let list = new ListNode(
