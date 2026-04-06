@@ -17,6 +17,18 @@ function ListNode(val) {
   this.next = null;
 }
 
+function hasCycleTraversal(head) {
+  let temp = head;
+  let map = new Map();
+
+  while (temp !== null) {
+    if (map.has(temp)) return true;
+    map.set(temp, true);
+    temp = temp.next;
+  }
+  return false;
+}
+
 function hasCycle(head) {
   let slow = head,
     fast = head;
@@ -40,3 +52,4 @@ node1.next = node2;
 node2.next = node3;
 node3.next = node2;
 console.log(hasCycle(node1));
+console.log(hasCycleTraversal(node1));
