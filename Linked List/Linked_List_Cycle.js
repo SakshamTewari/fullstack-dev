@@ -42,6 +42,30 @@ function hasCycle(head) {
   return false;
 }
 
+/*
+Given the head of a linked list that may contain a cycle, return the starting point of that cycle. If there is no cycle in the linked list return null.
+*/
+function startOfCycle(head) {
+  let slow = head,
+    fast = head;
+
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow === fast) {
+      slow = head;
+
+      while (slow !== fast) {
+        slow = slow.next;
+        fast = fast.next;
+      }
+      return slow;
+    }
+  }
+  return null;
+}
+
 // Test
 
 let node1 = new ListNode(1);
@@ -53,3 +77,12 @@ node2.next = node3;
 node3.next = node2;
 console.log(hasCycle(node1));
 console.log(hasCycleTraversal(node1));
+
+let head = new ListNode(3);
+head.next = new ListNode(2);
+head.next.next = new ListNode(0);
+head.next.next.next = new ListNode(-4);
+
+// Create cycle: last node connects to node with value 2
+head.next.next.next.next = head.next;
+console.log(startOfCycle(head));
