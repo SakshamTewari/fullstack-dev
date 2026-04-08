@@ -66,6 +66,25 @@ function startOfCycle(head) {
   return null;
 }
 
+/*
+Given the head of a linked list, determine the length of a loop present in the linked list. If there's no loop present, return 0.
+*/
+function lengthOfLoopTraversal(head) {
+  let temp = head;
+  let visited = new Map();
+  let length = 1;
+
+  while (temp !== null) {
+    if (visited.has(temp)) {
+      return length - visited.get(temp);
+    }
+    visited.set(temp, length);
+    temp = temp.next;
+    length++;
+  }
+  return 0;
+}
+
 // Test
 
 let node1 = new ListNode(1);
@@ -86,3 +105,4 @@ head.next.next.next = new ListNode(-4);
 // Create cycle: last node connects to node with value 2
 head.next.next.next.next = head.next;
 console.log(startOfCycle(head));
+console.log(lengthOfLoopTraversal(head));
