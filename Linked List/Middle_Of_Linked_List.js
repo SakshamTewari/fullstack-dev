@@ -32,7 +32,7 @@ function middleNode(head) {
   return curr;
 }
 
-// Fast-Slow pointer method
+// Fast-Slow pointer method (Tortoise and Hare algorithm)
 
 function middleNode(head) {
   let slow = head,
