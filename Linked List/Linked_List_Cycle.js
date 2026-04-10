@@ -85,6 +85,26 @@ function lengthOfLoopTraversal(head) {
   return 0;
 }
 
+function lengthOfLoopFastSlow(head) {
+  let slow = head;
+  let fast = head;
+
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow === fast) {
+      let length = 1;
+      while (slow.next !== fast) {
+        slow = slow.next;
+        length++;
+      }
+      return length;
+    }
+  }
+  return 0;
+}
+
 // Test
 
 let node1 = new ListNode(1);
@@ -106,3 +126,4 @@ head.next.next.next = new ListNode(-4);
 head.next.next.next.next = head.next;
 console.log(startOfCycle(head));
 console.log(lengthOfLoopTraversal(head));
+console.log(lengthOfLoopFastSlow(head));
