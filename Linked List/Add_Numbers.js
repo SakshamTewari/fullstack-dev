@@ -31,6 +31,47 @@ function addTwoNumbers(head1, head2) {
   return dummy.next;
 }
 
+/*
+Given the head of a singly linked list representing a positive integer number. Each node of the linked list represents a digit of the number, with the 1st node containing the leftmost digit of the number and so on. 
+The task is to add one to the value represented by the linked list and return the head of a linked list containing the final value.
+
+The number will contain no leading zeroes except when the value represented is zero itself.
+*/
+function addOne(head) {
+  // reverse the list
+  head = reverseList(head);
+  let curr = head;
+  let carry = 1;
+
+  while (curr && carry) {
+    let sum = curr.value + carry;
+    curr.value = sum % 10;
+    carry = Math.floor(sum / 10);
+
+    // if no next node and still have carry
+    if (curr.next === null && carry) {
+      curr.next = new Node(carry);
+      carry = 0;
+    }
+    curr = curr.next;
+  }
+  // reverse again
+  head = reverseList(head);
+  return head;
+
+  function reverseList(head) {
+    let prev = null,
+      curr = head;
+    while (curr) {
+      let next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    return prev;
+  }
+}
+
 // Test
 let head1 = new Node(5);
 head1.next = new Node(4);
@@ -41,3 +82,4 @@ head2.next = new Node(4);
 head2.next.next = new Node(2);
 
 console.log(addTwoNumbers(head1, head2));
+console.log(addOne(head1));
