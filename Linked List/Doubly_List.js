@@ -59,6 +59,42 @@ function deleteNode(head, key) {
   return head;
 }
 
+/*
+Given a doubly linked list, and a value ‘k’, insert a node having value ‘k’ at the end of the doubly linked list.
+
+DLL: 1 <-> 2 <-> 3 <-> 4  
+Value to be Inserted: 6  
+Result: DLL: 1 <-> 2 <-> 3 <-> 4 <-> 6  
+Explanation: A new node with value 6 has been inserted at the end of the doubly linked list after the tail node.
+*/
+
+function insertAtTail(head, k) {
+  let newNode = new Node(k);
+
+  if (!head) return newNode;
+
+  let curr = head;
+  while (curr.next) {
+    curr = curr.next; // Traverse to the end
+  }
+  curr.next = newNode;
+  newNode.prev = curr;
+  return head;
+}
+
+// Print list
+function printList(head) {
+  let curr = head;
+  let result = [];
+
+  while (curr) {
+    result.push(curr.data);
+    curr = curr.next;
+  }
+
+  console.log(result.join(" <-> "));
+}
+
 // Test
 let head = new Node(1);
 head.next = new Node(2);
@@ -68,6 +104,10 @@ head.next.next.prev = head.next;
 head.next.next.next = new Node(4);
 head.next.next.next.prev = head.next.next;
 
+printList(head);
 console.log(sizeOfDoublyList(head));
 head = deleteNode(head, 2);
-console.log(head);
+printList(head);
+
+head = insertAtTail(head, 6);
+printList(head);
