@@ -82,6 +82,25 @@ function insertAtTail(head, k) {
   return head;
 }
 
+/*
+Given a Doubly Linked List, delete the last node of the Doubly Linked List.
+
+Input:  DLL: 1 <-> 3 <-> 4 <-> 1
+Output: DLL: 1 <-> 3 <-> 4
+*/
+function deleteTail(head) {
+  if (!head) return null;
+  if (!head.next) return null;
+  let curr = head;
+
+  while (curr.next) {
+    curr = curr.next;
+  }
+  let prev = curr.prev;
+  prev.next = null;
+  return head;
+}
+
 // Print list
 function printList(head) {
   let curr = head;
@@ -110,4 +129,7 @@ head = deleteNode(head, 2);
 printList(head);
 
 head = insertAtTail(head, 6);
+printList(head);
+
+head = deleteTail(head);
 printList(head);
