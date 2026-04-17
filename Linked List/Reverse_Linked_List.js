@@ -5,17 +5,19 @@ Input: head = [1,2]
 Output: [2,1]
 */
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
+function ListNode(val, next) {
+  this.val = val === undefined ? 0 : val;
+  this.next = next === undefined ? null : next;
+}
+
+class DoublyListNode {
+  constructor(val, next, prev) {
+    this.val = val;
+    this.next = null;
+    this.prev = null;
+  }
+}
+
 var reverseList = function (head) {
   if (head == null || head.next == null) return head;
 
@@ -30,3 +32,46 @@ var reverseList = function (head) {
   }
   return prev;
 };
+
+function reverseDoublyList(head) {
+  let curr = head;
+  let temp = null;
+
+  while (curr) {
+    // swap next and prev
+    temp = curr.prev;
+    curr.prev = curr.next;
+    curr.next = temp;
+
+    // move to next (actually prev now)
+    curr = curr.prev;
+  }
+
+  // fix head
+  if (temp !== null) {
+    head = temp.prev;
+  }
+  return head;
+}
+
+function printList(head) {
+  let curr = head;
+  let result = [];
+
+  while (curr) {
+    result.push(curr.val);
+    curr = curr.next;
+  }
+
+  console.log(result.join(" <-> "));
+}
+
+// Test
+
+let headDLL = new DoublyListNode(1);
+headDLL.next = new DoublyListNode(2);
+headDLL.next.prev = headDLL;
+headDLL.next.next = new DoublyListNode(3);
+headDLL.next.next.prev = headDLL.next;
+
+console.log(printList(reverseDoublyList(headDLL)));
