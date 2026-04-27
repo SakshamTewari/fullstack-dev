@@ -35,6 +35,44 @@ function levelOrder(root) {
   return result;
 }
 
+/*
+Given the root of a Binary Tree, return the preorder, inorder and postorder traversal sequence of the given tree by making just one traversal.
+
+Binary Tree: 4 2 5 3 -1 7 6 -1 9 -1 -1 8 -1 1
+Output: Preorder: [4, 2, 3, 9, 1, 5, 7, 6, 8], Inorder: [3, 1, 9, 2, 4, 7, 5, 8, 6], Postorder: [1, 9, 3, 2, 7, 8, 6, 5, 4] 
+*/
+function allTraversals(root) {
+  if (!root) return [[], [], []];
+
+  let pre = [],
+    post = [],
+    inOrder = [];
+  let stack = [[root, 1]];
+
+  while (stack.length) {
+    let [node, state] = stack.pop();
+
+    // preorder
+    if (state === 1) {
+      pre.push(node.val);
+      stack.push([node, 2]);
+
+      if (node.left) stack.push([node.left, 1]);
+    }
+    // inorder
+    else if (state === 2) {
+      inOrder.push(node.val);
+      stack.push([node, 3]);
+      if (node.right) stack.push([node.right, 1]);
+    }
+    // postorder
+    else {
+      post.push(node.val);
+    }
+  }
+  return [pre, inOrder, post];
+}
+
 // Build tree
 
 function buildTree(arr) {
@@ -67,3 +105,5 @@ function buildTree(arr) {
 let root = buildTree([3, 9, 20, null, null, 15, 7]);
 // console.log(root);
 console.log(levelOrder(root));
+
+console.log(allTraversals(root));
