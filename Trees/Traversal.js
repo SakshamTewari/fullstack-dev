@@ -36,6 +36,70 @@ function levelOrder(root) {
 }
 
 /*
+Given root of binary tree, return the Inorder traversal of the binary tree.
+
+Input:root = [1, 4, null, 4, 2]  
+Output:[4, 4, 2, 1]
+*/
+function iterativeInorder(root) {
+  let res = [];
+  let stack = [];
+  let curr = root;
+
+  while (curr || stack.length) {
+    // go extreme left
+    while (curr) {
+      stack.push(curr);
+      curr = curr.left;
+    }
+
+    // process node
+    curr = stack.pop();
+    res.push(curr.val);
+
+    // go right
+    curr = curr.right;
+  }
+  return res;
+}
+
+function recursiveInorder(root) {
+  let res = [];
+
+  function dfs(node) {
+    if (!node) return;
+    dfs(node.left);
+    res.push(node.val);
+    dfs(node.right);
+  }
+  dfs(root);
+  return res;
+}
+
+/*
+Given the root of a Binary Tree, write a function that returns an array containing the preorder traversal of the tree using an iterative approach with a stack.
+
+Input:Binary Tree: 4 2 5 3 -1 7 6 -1 9 -1 -1 8 -1 1  
+Output:[4, 2, 3, 9, 1, 5, 7, 6, 8]  
+Explanation: We traverse the binary tree in the order of Root, Left, and then Right recursively.
+
+*/
+function iterativePreorder(root) {
+  if (!root) return [];
+  let stack = [root];
+  let result = [];
+
+  while (stack.length) {
+    let curr = stack.pop();
+    result.push(curr.val);
+
+    if (curr.right) stack.push(curr.right);
+    if (curr.left) stack.push(curr.left);
+  }
+  return result;
+}
+
+/*
 Given the root of a Binary Tree, return the preorder, inorder and postorder traversal sequence of the given tree by making just one traversal.
 
 Binary Tree: 4 2 5 3 -1 7 6 -1 9 -1 -1 8 -1 1
@@ -107,3 +171,8 @@ let root = buildTree([3, 9, 20, null, null, 15, 7]);
 console.log(levelOrder(root));
 
 console.log(allTraversals(root));
+
+console.log(iterativePreorder(root));
+
+console.log(iterativeInorder(root));
+console.log(recursiveInorder(root));
