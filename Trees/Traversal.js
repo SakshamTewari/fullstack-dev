@@ -99,6 +99,18 @@ function iterativePreorder(root) {
   return result;
 }
 
+function recursivePreorder(root) {
+  let res = [];
+
+  function dfs(node) {
+    if (!node) return;
+    res.push(node.val);
+    dfs(node.left);
+    dfs(node.right);
+  }
+  dfs(root);
+  return res;
+}
 /*
 Given the root of a Binary Tree, create a function that performs a postorder traversal using two stacks and returns an array containing the traversal sequence.
 
@@ -200,6 +212,7 @@ console.log(levelOrder(root));
 console.log(allTraversals(root));
 
 console.log(iterativePreorder(root));
+console.log(recursivePreorder(root));
 
 console.log(iterativeInorder(root));
 console.log(recursiveInorder(root));
