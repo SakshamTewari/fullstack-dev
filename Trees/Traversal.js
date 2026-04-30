@@ -100,6 +100,33 @@ function iterativePreorder(root) {
 }
 
 /*
+Given the root of a Binary Tree, create a function that performs a postorder traversal using two stacks and returns an array containing the traversal sequence.
+
+Input:Binary Tree: 4 2 5 3 -1 7 6 -1 9 -1 -1 8 -1 1  
+Output:[1, 9, 3, 2, 7, 8, 6, 5, 4] 
+*/
+function iterativePostorder2Stacks(root) {
+  if (!root) return [];
+  let stack1 = [root];
+  let stack2 = [];
+  let result = [];
+
+  while (stack1.length) {
+    let curr = stack1.pop();
+    stack2.push(curr);
+
+    if (curr.left) stack1.push(curr.left);
+    if (curr.right) stack1.push(curr.right);
+  }
+
+  // Reverse order
+  while (stack2.length) {
+    result.push(stack2.pop().val);
+  }
+  return result;
+}
+
+/*
 Given the root of a Binary Tree, return the preorder, inorder and postorder traversal sequence of the given tree by making just one traversal.
 
 Binary Tree: 4 2 5 3 -1 7 6 -1 9 -1 -1 8 -1 1
@@ -176,3 +203,5 @@ console.log(iterativePreorder(root));
 
 console.log(iterativeInorder(root));
 console.log(recursiveInorder(root));
+
+console.log(iterativePostorder2Stacks(root));
