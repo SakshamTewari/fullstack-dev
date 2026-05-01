@@ -111,6 +111,27 @@ function recursivePreorder(root) {
   dfs(root);
   return res;
 }
+
+/*
+Given the root of a Binary Tree, write a recursive function that returns an array containing the postorder traversal of the tree.
+
+Input: Binary Tree: 4 2 5 3 -1 7 6 -1 9 -1 -1 8 -1 1
+Output: [1, 9, 3, 2, 7, 8, 6, 5, 4]
+*/
+
+function recursivePostorder(root) {
+  let res = [];
+
+  function dfs(node) {
+    if (!node) return;
+    dfs(node.left);
+    dfs(node.right);
+    res.push(node.val);
+  }
+  dfs(root);
+  return res;
+}
+
 /*
 Given the root of a Binary Tree, create a function that performs a postorder traversal using two stacks and returns an array containing the traversal sequence.
 
@@ -216,5 +237,7 @@ console.log(recursivePreorder(root));
 
 console.log(iterativeInorder(root));
 console.log(recursiveInorder(root));
+
+console.log(recursivePostorder(root));
 
 console.log(iterativePostorder2Stacks(root));
