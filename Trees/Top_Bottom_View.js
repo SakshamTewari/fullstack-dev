@@ -13,6 +13,8 @@ class TreeNode {
   }
 }
 
+// Top View
+
 function topView(root) {
   if (!root) return [];
   let map = new Map(); // col -> node.val
@@ -33,6 +35,29 @@ function topView(root) {
   return sortedCols.map((col) => map.get(col));
 }
 
+// Bottom View
+
+function bottomView(root) {
+  if (!root) return [];
+
+  let map = new Map(); // col -> node.val
+  let queue = [[root, 0]]; // [node, col]
+
+  while (queue.length) {
+    let [node, col] = queue.shift();
+
+    // overwrite everytime
+    map.set(col, node.val);
+
+    if (node.left) queue.push([node.left, col - 1]);
+    if (node.right) queue.push([node.right, col + 1]);
+  }
+
+  // sort columns from left -> right
+  let sortedCols = [...map.keys()].sort((a, b) => a - b);
+  return sortedCols.map((col) => map.get(col));
+}
+
 // Test
 const root = new TreeNode(1);
 root.left = new TreeNode(2);
@@ -43,3 +68,4 @@ root.right.right = new TreeNode(6);
 root.right.left.right = new TreeNode(7);
 
 console.log(topView(root));
+console.log(bottomView(root));
