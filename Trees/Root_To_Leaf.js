@@ -39,6 +39,24 @@ function rootToLeafRecursive(root, target) {
   return path;
 }
 
+// Iterative approach
+
+function rootToLeafIterative(root, target) {
+  if (!root) return [];
+
+  let stack = [[root, [root.val]]]; // [node, path]
+
+  while (stack.length) {
+    let [node, path] = stack.pop();
+
+    if (node.val === target) return path;
+
+    if (node.right) stack.push([node.right, [...path, node.right.val]]);
+    if (node.left) stack.push([node.left, [...path, node.left.val]]);
+  }
+  return [];
+}
+
 // Test
 
 const root = new TreeNode(3);
@@ -48,3 +66,4 @@ root.right.left = new TreeNode(15);
 root.right.right = new TreeNode(7);
 
 console.log(rootToLeafRecursive(root, 7));
+console.log(rootToLeafIterative(root, 7));
