@@ -30,6 +30,30 @@ function countNodes(root) {
   return count;
 }
 
+// O((logn)^2)
+
+function countNodesOptimized(root) {
+  if (!root) return 0;
+
+  let leftHeight = getHeight(root, "left");
+  let rightHeight = getHeight(root, "right");
+
+  // perfect binary tree
+  if (leftHeight === rightHeight) return Math.pow(2, leftHeight) - 1;
+
+  return 1 + countNodesOptimized(root.left) + countNodesOptimized(root.right);
+
+  function getHeight(node, direction) {
+    let height = 0;
+
+    while (node) {
+      height++;
+      node = direction === "left" ? node.left : node.right;
+    }
+    return height;
+  }
+}
+
 // Test
 const root = new TreeNode(3);
 root.left = new TreeNode(9);
@@ -38,3 +62,4 @@ root.right.left = new TreeNode(15);
 root.right.right = new TreeNode(7);
 
 console.log(countNodes(root));
+console.log(countNodesOptimized(root));
