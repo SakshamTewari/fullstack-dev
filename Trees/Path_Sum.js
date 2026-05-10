@@ -29,6 +29,34 @@ function hasPathSum(root, targetSum) {
   );
 }
 
+/*
+Given a Binary Tree, determine the maximum sum achievable along any path within the tree.
+
+Input: Binary Tree: -10 9 20 -1 -1 15 7
+Output: 42
+Explanation: Out of all the paths possible in the Binary Tree, 15 -> 20 -> 7 has the greatest sum ie. 42.
+*/
+
+function maxPathSum(root) {
+  let maxSum = -Infinity;
+
+  function dfs(node) {
+    if (!node) return 0;
+
+    // ignore negative paths
+    let leftGain = Math.max(0, dfs(node.left));
+    let rightGain = Math.max(0, dfs(node.right));
+
+    let currentPahSum = node.val + leftGain + rightGain;
+    maxSum = Math.max(maxSum, currentPahSum);
+
+    // return best gain to parent
+    return node.val + Math.max(leftGain, rightGain);
+  }
+  dfs(root);
+  return maxSum;
+}
+
 // Test
 
 const tree = new TreeNode(
@@ -38,3 +66,4 @@ const tree = new TreeNode(
 );
 
 console.log(hasPathSum(tree, 20));
+console.log(maxPathSum(tree));
