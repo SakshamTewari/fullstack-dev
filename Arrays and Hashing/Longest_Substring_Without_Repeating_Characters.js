@@ -47,9 +47,34 @@ function longestSubstringSlidingWindow(s) {
   return maxLen;
 }
 
+function longestSubstringHash(s) {
+  let n = s.length;
+  let hashLen = 256; // assuming ASCII character set
+  let hash = new Array(hashLen).fill(-1); // initialize all characters as not present
+  let l = 0,
+    r = 0,
+    maxLen = 0;
+
+  while (r < n) {
+    let charCode = s.charCodeAt(r);
+
+    // character already seen
+    if (hash[charCode] !== -1) {
+      // move left pointer
+      l = Math.max(l, hash[charCode] + 1);
+    }
+
+    // update last seen
+    hash[charCode] = r;
+    maxLen = Math.max(maxLen, r - l + 1);
+    r++;
+  }
+  return maxLen;
+}
+
 // Test
 
 console.log(lengthOfLongestSubstring("abcabcbb"));
 console.log(lengthOfLongestSubstring("bbbbb"));
-
 console.log(longestSubstringSlidingWindow("abcabcbb"));
+console.log(longestSubstringHash("abcabcbb"));
