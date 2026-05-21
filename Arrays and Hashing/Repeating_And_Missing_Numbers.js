@@ -25,6 +25,24 @@ function findErrorNums(nums) {
   return result;
 }
 
+// Better approach using Hash Array
+
+function findErrorNumsHashArray(nums) {
+  let hashArray = new Array(nums.length + 1).fill(0);
+  let result = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    hashArray[nums[i]]++;
+  }
+
+  for (let i = 1; i < hashArray.length; i++) {
+    if (hashArray[i] === 2) result[0] = i;
+    else if (hashArray[i] === 0) result[1] = i;
+  }
+  return result;
+}
+
 // Test
 const nums = [3, 1, 2, 5, 4, 6, 7, 5];
 console.log(findErrorNums(nums));
+console.log(findErrorNumsHashArray(nums));
