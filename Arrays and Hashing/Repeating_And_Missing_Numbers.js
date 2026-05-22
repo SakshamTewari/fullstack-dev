@@ -42,7 +42,37 @@ function findErrorNumsHashArray(nums) {
   return result;
 }
 
+// Sum and Sum of squares
+
+function findErrorNumsSum(nums) {
+  let n = nums.length;
+  let actualSum = 0,
+    actualSqSum = 0;
+
+  for (let num of nums) {
+    actualSum += num;
+    actualSqSum += num * num;
+  }
+
+  let expectedSum = (n * (n + 1)) / 2;
+  let expectedSqSum = (n * (n + 1) * (2 * n + 1)) / 6;
+
+  // x-y
+  let diff = actualSum - expectedSum;
+  // x^2 - y^2
+  let sqDiff = actualSqSum - expectedSqSum;
+
+  // x+y
+  let sum = sqDiff / diff;
+
+  let repeating = (diff + sum) / 2;
+  let missing = sum - repeating;
+
+  return [repeating, missing];
+}
+
 // Test
 const nums = [3, 1, 2, 5, 4, 6, 7, 5];
 console.log(findErrorNums(nums));
 console.log(findErrorNumsHashArray(nums));
+console.log(findErrorNumsSum(nums));
