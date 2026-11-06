@@ -1,4 +1,5 @@
-/* Currying
+/* 
+Currying
 
     - concept of functional programming
     - we can pass functions as arguments(callbacks) and return functions
@@ -44,3 +45,23 @@ const curryingSum2 = (...args2) => {
     return temp;
   }
 };
+
+/* 
+Create a function that will remember its previously passed values and return the sum of current and previous value
+
+    - again uses closure
+*/
+
+const sumWithMemory = () => {
+  let sum = 0;
+
+  return function (num = 0) {
+    sum += num;
+    return sum;
+  };
+};
+
+console.log(sumWithMemory(1)); //1
+console.log(sumWithMemory(3)); //4
+console.log(sumWithMemory(4)); //8
+console.log(sumWithMemory(7)); //15

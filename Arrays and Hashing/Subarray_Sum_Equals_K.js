@@ -40,7 +40,7 @@ function subarraySumSliding(nums, k) {
   for (let right = 0; right < nums.length; right++) {
     sum += nums[right];
 
-    while (sum > k) {
+    while (left <= right && sum > k) {
       sum -= nums[left];
       left++;
     }

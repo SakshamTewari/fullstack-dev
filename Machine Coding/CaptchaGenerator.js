@@ -1,3 +1,10 @@
+/*
+  Captcha Generator
+  - generates a random alphanumeric string on page load or when user requests a refresh
+  - displays string using visual distortion (skewing, rotation)
+  - input field for users' response
+*/
+
 const generateCaptcha = (length = 5) => {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
   return Array.from({ length }, () =>

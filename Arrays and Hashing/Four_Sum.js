@@ -1,3 +1,20 @@
+/*
+Given an array arr[] of n integers and an integer target, the task is to find any quadruplet in arr[] such that it's sum is equal to the target.
+
+Note: If there are multiple quadruplets with sum = target, return any one of them.
+
+Examples:
+
+Input: arr[] = {2, 4, 6, 8, 1, 3}, target = 15
+Output: {2, 4, 6, 3}
+Explanation: The quadruplet {2, 4, 6, 3} has sum = 15.
+
+Input: arr[] = {1, 2, 3, 4, 10}, target = 20
+Output: {}
+Explanation: No quadruplet adds up to a sum of 20.
+*/
+
+// Sort + 2-pointer [O(n^3) time, O(1) space]
 function fourSum(nums, target) {
   let result = [];
   const n = nums.length;

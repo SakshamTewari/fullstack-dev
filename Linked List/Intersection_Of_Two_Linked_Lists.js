@@ -31,6 +31,22 @@ function getIntersectionNode(headA, headB) {
   return currA;
 }
 
+function getIntersectionNodeHash(headA, headB) {
+  let set = new Set();
+  let curr = headA;
+  while (curr !== null) {
+    set.add(curr); // storing reference
+    curr = curr.next;
+  }
+
+  // Traverse B
+  curr = headB;
+  while (curr !== null) {
+    if (set.has(curr)) return curr;
+    curr = curr.next;
+  }
+}
+
 // Test
 // Shared part
 let intersect = new ListNode(8);

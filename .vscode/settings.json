@@ -1,0 +1,22 @@
+{
+  // Enable format on save
+  "editor.formatOnSave": true,
+  "editor.wordWrap": "off",
+  "editor.wordWrapColumn": 200,
+
+  // Default formatter for JavaScript
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Optional: also apply for JSX/TS if you use them
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

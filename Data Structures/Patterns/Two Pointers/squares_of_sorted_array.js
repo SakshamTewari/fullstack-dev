@@ -77,5 +77,5 @@ function reverse(nums) {
 
 // Test
 nums = [-4, -1, 0, 3, 10];
-// console.log(squareOfSortedArray1(nums));
+console.log(squareOfSortedArray1(nums));
 console.log(squareOfSortedArray2(nums));

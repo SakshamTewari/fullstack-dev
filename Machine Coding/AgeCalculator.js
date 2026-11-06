@@ -1,3 +1,11 @@
+/*
+  Age Calculator
+  - calculate user's age in years, months, days based on birthdate input
+  - input should use browser's built-in datepicker
+  - display result in "X years, Y months, Z days" format
+  - handle errors
+*/
+
 const AgeCalculator = () => {
   const [birthDate, setBirthDate] = React.useState('');
   const [age, setAge] = React.useState(null);

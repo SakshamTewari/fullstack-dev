@@ -73,3 +73,30 @@ Scheduling tasks: In project management, activities frequently depend on one ano
 Data processing: In data processing pipelines, the outcomes of some processes may be dependent. The stages can be carried out in the right order by using Kahn's algorithm.
 Circuit design: In the creation of an electronic circuit, some components may be dependent on the output of others. The components can be joined in the right order by using Kahn's technique.
 */
+
+// Longest Path in a Directed Acyclic Graph
+
+/*
+Given a Weighted Directed Acyclic Graph (DAG) and a source vertex s in it, find the longest distances from s to all other vertices in the given graph.
+The longest path problem for a general graph is not as easy as the shortest path problem because the longest path problem doesn’t have optimal substructure property. 
+In fact, the Longest Path problem is NP-Hard for a general graph. However, the longest path problem has a linear time solution for directed acyclic graphs. 
+The idea is similar to linear time solution for shortest path in a directed acyclic graph., we use Topological Sorting. 
+ */
+
+function longestPathDAG(V, edges) {
+  const adj = Array.from({ length: V }, () => []);
+
+  for (const [u, v, w] of edges) {
+    adj[u].push([V, w]);
+  }
+
+  const visited = new Array(V).fill(false);
+  const topo = [];
+
+  // Topological sort using DFS
+  function dfs(node) {
+    visited[node] = true;
+    for (const [neighbor, _] of adj[node]) {
+    }
+  }
+}

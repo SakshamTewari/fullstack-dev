@@ -33,19 +33,19 @@ class Square {
 class ShapeFactory {
   createShape(type, dimension) {
     switch (type) {
-      case 'circle':
+      case "circle":
         return new Circle(dimension);
-      case 'square':
+      case "square":
         return new Square(dimension);
       default:
-        throw new Error('Shape not recognized');
+        throw new Error("Shape not recognized");
     }
   }
 }
 
 // Usage
 const factory = new ShapeFactory();
-const circle = factory.createShape('circle', 5);
+const circle = factory.createShape("circle", 5);
 circle.draw();
 
 /*
@@ -87,14 +87,20 @@ class PushNotification {
 class NotificationFactory {
   createNotification(type, config) {
     switch (type) {
-      case 'email':
+      case "email":
         return new EmailNotification(config.email, config.message);
-      case 'sms':
+      case "sms":
         return new SMSNotification(config.phone, config.message);
-      case 'push':
+      case "push":
         return new PushNotification(config.deviceId, config.message);
       default:
-        throw new Error('Type not recognised');
+        throw new Error("Type not recognised");
     }
   }
 }
+
+/*
+  Implementation 3
+
+    - Cross Platform UI elements
+*/

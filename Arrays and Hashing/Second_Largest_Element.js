@@ -20,4 +20,6 @@ function secondLargest(arr) {
   return secondMax;
 }
 
+// Test
+
 console.log(secondLargest([8, 8, 7, 6, 5]));

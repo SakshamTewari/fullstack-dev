@@ -105,7 +105,7 @@ myPromiseAll(taskList1)
 const task2 = (time) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (time < 2000) {
+      if (time < 5000) {
         reject('Rejected');
       }
     }, time);
@@ -116,3 +116,93 @@ const taskList2 = [task2(3000), task2(1000), task2(2000)];
 myPromiseAll(taskList2)
   .then((results) => console.log('results: ', results))
   .catch(console.error);
+
+/* Promise.any()
+
+    - resolves when any  of the promises inside is resolved
+    - rejected when all promises are rejected
+    - return an AggregateError object containing all the errors from rejected promises
+  */
+
+// setTimeout(reject, 400, 'Error1')
+
+const myPromiseAny = (taskList) => {
+  let rejections = 0;
+  const errors = [];
+  return new Promise((resolve, reject) => {
+    taskList.forEach((promise, index) => {
+      Promise.resolve(promise)
+        .then((val) => resolve(val))
+        .catch((error) => {
+          rejections++;
+          errors[index] = error;
+          if (rejections === taskList.length) {
+            reject(new AggregateError(errors, 'All promises were rejected'));
+          }
+        });
+    });
+  });
+};
+
+myPromiseAny(taskList2);
+
+/* Promise.race 
+  
+  - returns a promise 
+  - resolves or rejects as soon as any one of the promises resolves or rejects and returns its value
+
+*/
+
+const myPromiseRace = (taskList) => {
+  return new Promise((resolve, reject) => {
+    taskList.forEach((promise) => {
+      Promise.resolve(promise).then(resolve).catch(reject);
+    });
+  });
+};
+
+myPromiseRace;
+
+/* Priority Promise 
+
+  - Given a list of promises and their priorities, call them parallely and resolve with most prioity promise
+  - If all promises are rejected, then reject with a custom error.
+
+*/
+function resolvePromisesWithPriority(promises) {
+  // sort promises based on priority
+  promises.sort((a, b) => a.priority - b.priority);
+  let rejected = {};
+  let result = {};
+  let mostPriority = 0;
+  let taskCompleted = 0;
+
+  return new Promise((resolve, reject) => {
+    promises.forEach(({ task, priority }, i) => {
+      task
+        .then((value) => (result[priority] = value))
+        .catch((error) => {
+          rejected[priority] = true;
+          if (priority == promises[mostPriority].priority) mostPriority++;
+        })
+        .finally(() => {
+          if (
+            !rejected[priority] &&
+            priority === promises[mostPriority].priority
+          ) {
+            console.log(rejected);
+            resolve(priority);
+          }
+          taskCompleted++;
+          if (taskCompleted === promises.length) reject('All Apis failed');
+        });
+    });
+  });
+}
+
+const promises = [
+  { status: 'resolve', priority: 4 },
+  { status: 'reject', priority: 1 },
+  { status: 'resolve', priority: 2 },
+  { status: 'reject', priority: 3 },
+];

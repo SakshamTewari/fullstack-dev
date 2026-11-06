@@ -60,6 +60,8 @@ window.Promise = function (callback) {
 function getElementsByStyle(rootElement, property, value) {
   const computedValue = getPropertyComputedValue(property, value);
   const result = [];
+
+  // helper function to traverse DOM
   const search = (element, property, value) => {
     let computedStyles = window.getComputedStyle(element);
     let elementPropertyValue = computedStyles[property];

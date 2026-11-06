@@ -20,7 +20,7 @@ const sampler = (fn, count, context) => {
   };
 };
 
-const sample = sampler(() => console.log('hello'), 3);
+const sample = sampler(() => console.log("hello"), 3);
 sample();
 sample();
 sample(); //hello
@@ -29,6 +29,19 @@ sample();
 sample(); //hello
 
 //not getting an error because undefined is a valid context when calling apply, especially when the function we're applying doesn't use this.
+
+// Easier version without context handling
+function samplerEasy(fn, count) {
+  let calls = 0;
+
+  return function () {
+    calls++;
+    if (calls === count) {
+      fn();
+      calls = 0;
+    }
+  };
+}
 
 /*
 const logger = {
@@ -43,7 +56,4 @@ const sampledLog = sampler(logger.log, 3, logger);
 sampledLog("A"); // this = undefined, so fallback to context = logger
 sampledLog("B");
 sampledLog("C"); // ✅ prints "LOG: C"
-
-
-
 */
